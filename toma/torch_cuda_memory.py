@@ -57,7 +57,8 @@ def get_cuda_blocked_memory():
 
 def is_cuda_out_of_memory(exception):
     return (
-        isinstance(exception, RuntimeError) and len(exception.args) == 1 and "CUDA out of memory." in exception.args[0]
+        isinstance(exception, RuntimeError) and len(exception.args) == 1 and
+        ("CUDA out of memory." in exception.args[0] or "Triton Error [CUDA]: out of memory" in exception.args[0])
     )
 
 
